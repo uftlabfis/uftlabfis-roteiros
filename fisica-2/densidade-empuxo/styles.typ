@@ -1,3 +1,6 @@
+// Bibliotecas importadas
+#import "@preview/cetz:0.4.0"
+
 // 🎨 Definição de Cores
 #let uft-green = rgb("#008577")
 #let uft-blue = rgb("#004A80")
@@ -118,7 +121,7 @@
     }
   )
   // ✍️ Estilo de texto e parágrafo
-  set text(lang: "pt", size: 12pt,  font: "Arial")
+  set text(lang: "pt", size: 12pt,  font: "Times New Roman")
 
   set par(
     first-line-indent: (
@@ -173,7 +176,7 @@
     }
   )
   show table: set text(size: 10pt)
-  show table.cell.where(y: 0): strong
+  //show table.cell.where(y: 0): strong
 
   
   //📌 Coloca o título no topo da primeira página
