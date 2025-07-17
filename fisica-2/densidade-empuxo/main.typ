@@ -71,6 +71,11 @@ em água e sustentado por um fio conectado a um dinamômetro.
       let h = 3.2 + i/10
       line((0, h), (0.2, h))
     }
+    content(
+      (-0.75, 4.5), 
+      angle: 90deg,
+      [Dinamômetro]
+    )
     // Fio
     line((0, 1.3), (0, 3))
     // Corpo de Prova
@@ -83,6 +88,10 @@ em água e sustentado por um fio conectado a um dinamômetro.
       let h = -2.5 + i/2
       line((1.3, h), (1.5, h))
     }
+    content(
+      (0, -2.75),
+      [Proveta]
+    )
     // Forças
     circle((0,0), radius: 2pt, fill: black)
     line((0, 0), (0, -2), stroke: (thickness: 1.5pt), mark: (end: "stealth", fill: black), name: "peso")
