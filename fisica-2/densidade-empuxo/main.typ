@@ -128,7 +128,7 @@ $<eq-final>
 
 Observe que no desenvolvimento acima, utilizamos a definição de densidade para substituir a massa $m$ ($rho = frac(m, V) arrow.double m = rho V$). Além disso, dado que o corpo está totalmente subserso, temos que o volume deslocado é igual ao volume do corpo ($V_(d e s) = V$).
 
-
+\
 #section([= Objetivos])
 
 + Compreender os conceitos de densidade e empuxo;
