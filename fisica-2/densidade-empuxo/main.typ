@@ -1,7 +1,7 @@
 #import "styles.typ": *
 
 #show: setup.with(
-  title: [Título do roteiro],
+  title: [Densidade e Empuxo],
   author: [Laboratório de Ensino de Física],
   abbr: [Labfis],
   url: [https://github.com/uftlabfis/uftlabfis]
