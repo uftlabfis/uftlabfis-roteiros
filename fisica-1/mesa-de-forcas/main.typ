@@ -124,7 +124,7 @@ O experimento da mesa de forças, ilustrada na @fig-mesa permite compreender de 
 
 #figure(
   kind: table,
-  caption: [Coleta de dados],
+  caption: [Coleta e análise de dados],
 )[
   #table(
     columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
