@@ -86,7 +86,8 @@ O experimento da mesa de forças, ilustrada na @fig-mesa permite compreender de 
 
 + Compreender que a força é uma grandeza vetorial;
 + Aplicar a _regra do paralelogramo_ para determinar a resultante de um par de forças;
-+ Determinar experimentalmente o valor de uma força que equilibra duas outras forças.
++ Determinar experimentalmente o valor de uma força que equilibra duas outras forças;
++ Determinar graficamente a resultante de duas forças pela regra do paralelogramo.
 
 
 
@@ -95,8 +96,7 @@ O experimento da mesa de forças, ilustrada na @fig-mesa permite compreender de 
 - Mesa de forças composta por um transferidor de ângulos e base de fixação;
 - 03 polias móveis;
 - Conjunto de massas e suportes;
-- Fios;
-- Balança digital.
+- Fios.
 
 
 #section([= Procedimentos])
