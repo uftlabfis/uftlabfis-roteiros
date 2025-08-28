@@ -1,3 +1,7 @@
+// Bibliotecas importadas
+#import "@preview/cetz:0.4.0" // Desenho vetorial
+#import "@preview/subpar:0.2.2" //Subfiguras
+
 // 🎨 Definição de Cores
 #let uft-green = rgb("#008577")
 #let uft-blue = rgb("#004A80")
