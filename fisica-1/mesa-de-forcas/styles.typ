@@ -15,7 +15,7 @@
   rect(height: 1.5pt, fill: primary-color, width: 100%)
   grid(
     columns: (8fr, 2fr),
-    align: (right+ horizon, right),
+    align: (right+horizon, right),
     [
       UNIVERSIDADE FEDERAL DO *TOCANTINS*\
       Câmpus Universitário de *Palmas* \
@@ -26,7 +26,7 @@
     ]
   )
   rect(height: 1.5pt, fill: primary-color, width: 100%)
-  v(1cm)
+  v(0.5cm)
   block(below: 0.2em, fill: primary-color, inset: 3pt, width: 100%, height: 1cm)[
     #align(center+horizon)[
       #upper(text(weight: "semibold", fill: white, size: 16pt)[#title])

@@ -120,6 +120,7 @@ O experimento da mesa de forças, ilustrada na @fig-mesa permite compreender de 
 + Anote o ângulo $theta$ formado pelos fios ligados às massas $m_1$ e $m_2$ no campo correspondente da @tab-dados.
 + Utilizando o valor da aceleração da gravidade $g = 9,8 "m/s"^2$, calcule o valor das forças $F_1$, $F_2$ e $F_3$ correspondentes aos pesos das massas $m_1$, $m_2$ e $m_3$, respectivamente. Anote os resultados na @tab-dados.
 + Aplique a @eq-paralelogramo e determine a Força resultante $F_r$ esperada que equilibraria as forças $F_1$ e $F_2$ com um ângulo $theta$.
++ Represente as forças $F_1$, $F_2$ e $F_3$ no diagrama apropriado do #text(fill: primary-color)[Anexo - Análise Gráfica]. Use a regra do paralelogramo para determinar graficamente a força $F_r$.
 + Repita os passos acima para os ternos de massas $m_1$, $m_2$ e $m_3$ na @tab-dados.
 
 #figure(
@@ -150,7 +151,7 @@ O experimento da mesa de forças, ilustrada na @fig-mesa permite compreender de 
 #set enum(start: 1)
 + Usando a @eq-erro, calcule o erro percentual $"E (%)"$ na determinação da força resultante de cada distribuição de massas. Anote o resultado na coluna correspondente da @tab-dados.
 
-
++ A análise gráfica permite concluir que a relação $F_3 = -F_r$ é verdadeira? Explique as causas de possíveis erros.
 
 #set heading(numbering: none)
 #section([= Referências])
