@@ -82,7 +82,7 @@
   set page(
     paper: "a4", 
     margin: (
-      top: 3cm, bottom: 2cm, left: 1.5cm, right: 1.5cm
+      top: 3cm, bottom: 2cm, left: 1cm, right: 1cm
     ),
     columns: 2, 
     numbering: "1",
