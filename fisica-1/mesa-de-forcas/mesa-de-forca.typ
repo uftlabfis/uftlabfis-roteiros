@@ -156,3 +156,146 @@ O experimento da mesa de forças, ilustrada na @fig-mesa permite compreender de 
 #section([= Referências])
 
 #bibliography("assets/references/references.bib", style: "assets/references/abnt.csl", title:"")
+
+#pagebreak()
+#set page(paper: "a4", flipped: true)
+
+#place(
+  top + center,
+  float: true,
+  scope: "parent",
+  clearance: 1em,
+)[
+  #par(justify: false)[
+    #text(fill: primary-color)[*ANEXO - ANÁLISE GRÁFICA*]
+  ]
+]
+
+#let transferifor = {
+  cetz.canvas({
+    import cetz.draw: *
+    let raio = 6.4cm
+    circle((0,0), radius: raio)
+    for i in range(360) {
+      let a=0.95
+      if calc.rem(i, 10)==0 {
+        a = 0.87
+      } else if calc.rem(i, 5)==0 {
+        a = 0.9
+      } else {
+        a = 0.94
+      }
+
+      line(
+        (a*raio*calc.cos(i * calc.pi/180), a*raio*calc.sin(i * calc.pi/180)),
+        (raio*calc.cos(i * calc.pi/180), raio*calc.sin(i * calc.pi/180)),
+        stroke: (thickness: 0.5pt)
+      )
+    }
+
+    for i in range(12) {
+      let ang = 30deg * i
+      let r = 4cm
+      line((0,0),
+        (r * calc.cos(ang), r * calc.sin(ang)),
+        stroke: (thickness: 0.5pt, dash: "dashed"), 
+      )
+    }
+
+    for i in range(10) {
+      let ang = 10 * i
+      let a = 0.82
+      content(
+        (a*raio*calc.cos(ang * calc.pi/180), a*raio*calc.sin(ang * calc.pi/180)), [#ang]
+      )
+      content(
+        (a*raio*calc.cos(ang * calc.pi/180), a*raio*calc.sin(-ang * calc.pi/180)), [#ang]
+      )
+      content(
+        (a*raio*calc.cos((180-ang) * calc.pi/180), a*raio*calc.sin(ang * calc.pi/180)), [#ang]
+      )
+      content(
+        (a*raio*calc.cos((180-ang) * calc.pi/180), a*raio*calc.sin(-ang * calc.pi/180)), [#ang]
+      )
+    }
+
+    for r in (2.5cm, 3.5cm, 4cm) {
+      arc(
+        (r*calc.cos(95deg),r*calc.sin(95deg)), start: 95deg, stop: 445deg, radius: r, stroke: (thickness: 0.5pt)
+      )
+      let label = $#str(10 * r / 1cm)$
+      content(
+        (0, r), [#box(fill: white)[$#label$]]
+      )
+    }
+  })
+}
+
+#let header(f1, f2, f3) = {
+  set table(
+    stroke: (x, y) => if y == 0 {
+      (top: 0.7pt + primary-color)
+      (bottom: 0.7pt + primary-color)
+      if x > 0 {
+        (left: 0.7pt + primary-color)
+      }
+    } else {
+      (bottom: 0.7pt + primary-color)
+      if x > 0 {
+        (left: 0.7pt + primary-color)
+      }
+    },
+    fill: (x, y) => if y == 0 {
+      primary-color.transparentize(60%)
+    } else {
+      if calc.even(y) {
+        primary-color.transparentize(80%)
+      }
+    }
+  )
+  show table: set text(size: 10pt)
+  show table.cell.where(y: 0): strong
+  table(
+    columns: (1fr, 1fr, 1fr),
+    table.header([$m_1$ (g)], [$m_2$ (g)], [$m_3$ (g)]),
+    [#f1], [#f2], [#f3]
+  )
+}
+
+#set align(center)
+#set table(
+  fill: white,
+  stroke: (x, y) => if x==0 {
+    (right: 0.6pt+primary-color)
+  }
+)
+#table(
+  columns: (13.75cm, 13.75cm),
+  align: horizon,
+  inset: 0.2cm,
+  [
+    #header(40, 40, 40)
+  ], [
+    #header(35, 35, 40)
+  ],
+  [
+    #transferifor
+  ],
+  [
+    #transferifor
+  ]
+)
+
+#pagebreak()
+#table(
+  columns: (13.75cm, 13.75cm),
+  align: horizon,
+  inset: 0.2cm,
+  [
+    #header(25, 35, 40)
+  ], [],
+  [
+    #transferifor
+  ],
+  []
+)
