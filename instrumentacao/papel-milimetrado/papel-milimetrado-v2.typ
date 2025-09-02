@@ -362,7 +362,9 @@ $
 ]
 
 
+/*
 #set heading(numbering: none)
 #section([= Referências])
 
 #bibliography("assets/references/references.bib", style: "assets/references/abnt.csl", title:"")
+*/
