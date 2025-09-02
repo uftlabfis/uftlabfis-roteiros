@@ -16,7 +16,7 @@
 #let L = x - margem
 #let H = y - margem
 // Fator de redução da figura
-#let k = 28
+#let k = 21
 // Dados
 #let dados = (
   (.2078, .4),
@@ -91,6 +91,70 @@
 
 O papel milimetrado é uma ferramenta essencial em diversas áreas da ciência e engenharia, principalmente para a *análise gráfica de dados*. Seu _layout_, com linhas horizontais e verticais finamente espaçadas, facilita a plotagem precisa de pontos e a visualização de relações entre variáveis. Ele é especialmente útil para determinar a relação linear entre duas grandezas, como a posição e o tempo, e para calcular coeficientes como a inclinação da reta.
 
+Consideremos um estudo experimental no qual foram coletados dados das variáveis $(u, v)$. Deseja-se representar esses dados em um papel milimetrado de comprimento $L$ e altura $H$. Podemos usar o conceito de proporção para relacionar a medida de uma variável de estudo com sua representação no papel milimetrado. 
+
+Sem perda de generalidade, associando a variável $u$ à escala horizontal do papel, temos a seguinte relação de proporção mostrada na @fig-proporcao.
+
+#figure(
+  caption: [Relação de proporção da variável $u$],
+  cetz.canvas(length: 1cm, {
+    import cetz.draw: *
+    let L = 3
+    let delta = 0.25
+    let pos_x = (0, 3)
+    let labels_var = ("Papel", $u$)
+    let anchors = ("east", "west")
+    let pos_y = (0.1*L, 0.6*L, 0.9*L)
+    let labels_y = (($0$, $x$, $L$), ($u_("min")$, $u$, $u_("max")$))
+    for i in range(2) {
+      let xi = pos_x.at(i)
+      let label_var = labels_var.at(i)
+      line((xi, 0), (xi, L))
+      content((xi, L), anchor: "south", padding: 0.1, [#label_var])
+      for j in range(3) {
+        let yi = pos_y.at(j)
+        let label_y = labels_y.at(i).at(j)
+        line((xi - delta/2, yi), (xi + delta/2, yi))
+        content((xi + (i - 1)*delta/2, yi), anchor: anchors.at(i), padding: 0.2, [#label_y])
+        line((pos_x.at(0), yi), (pos_x.at(1), yi), stroke: (thickness: 0.5pt, dash: "dashed"))
+      }
+    }
+  })
+)<fig-proporcao>
+
+Observe que o valor mínimo $u_("min")$ equivale ao $0$ (zero) do papel; o valor máximo $u_("max")$ equivale ao comprimento útil do papel. Assim, um valor arbitrário da variável $u$ dicará associado a uma posição  $x$ do papel milimetrado. Matematicamente, tem-se:
+
+
+#set math.equation(numbering: none)
+$
+  x/L = (u - u_("min"))/(u_("max") - u_("min"))
+$
+
+#set math.equation(numbering: "(1)", number-align: bottom)
+
+Podemos reescrever a expressão acima como:
+
+$
+  u = u_("min") + e_x dot x
+$<eq-prop-x>
+
+#par(first-line-indent: 0mm)[em que] 
+$ 
+  e_x = display((u_("max") - u_("min"))/L) 
+$<eq-escala-x> 
+#par(first-line-indent: 0mm)[é a razão de escala horizontal. O mesmo raciocínio permite obter as equações para a escala vertical:]
+
+
+$
+  v = v_("min") + e_y dot y
+$<eq-prop-y>
+
+#par(first-line-indent: 0mm)[em que] 
+$ 
+  e_y = display((v_("max") - v_("min"))/L) 
+$<eq-escala-y>  
+#par(first-line-indent: 0mm)[é a razão de escala vertical.]
+
 #section([= Objetivos])
 
 + Compreender o uso do papel milimetrado para a representação gráfica de dados experimentais;
@@ -111,11 +175,11 @@ Para esta atividade, utlizamos os seguintes dados, relativos à posição (em me
 
 #figure(
   kind: table,
-  caption: [Dados fictícios para atividade]
+  caption: [Dados fictícios de Tempo e Posição de um móvel]
 )[
   #table(
     columns: 2,
-    table.header([Tempo (s)], [Posição (m)]),
+    table.header([$t$ (s)], [$s$ (m)]),
     ..dados.flatten().map(row => [#str(row).replace(".", ",")])
   )
 ]
@@ -131,41 +195,50 @@ Para esta atividade, utlizamos os seguintes dados, relativos à posição (em me
 #set math.equation(numbering: none)
 
 
++ Eixo Horizontal ($u arrow t$). Aplique a equação @eq-escala-x para calcular o valor da razão de escala horizontal. Note que a largura do papel é igual a $#x$ mm. Entretando, a fim de ter uma _margem de segurança_, utilizaremos $L = #L$ mm. Preencha a @tab-escala-x.
 
-+ Eixo Horizontal: $x arrow.double  t "(Tempo)"$.
+#figure(
+  kind: table,
+  caption: [Cálculo da escala horizontal]
+)[
+  #table(
+    columns: (1fr, 1fr, 1fr, 1fr),
+    table.header(
+      [$t_("min")$], [$t_("max")$], [$L$], [$e_x$],
+    ), 
+    [0], [], [], []
+  )
+]<tab-escala-x>
 
-  - Cálculo da amplitude horizontal ($A_h$):
-    $ 
-      A_x &= t_("máx")= #str(t_max).replace(".", ",") " s"
-    $
-  - Divida a amplitude  horizontal ($A_h$)  pela largura do papel (nese caso igual a $L = #L$ mm) para encontrar a escala horizontal ($e_x$):
-    $
-      e_x &= frac(A_h, L) = #t_max/#L approx #str(ex).replace(".", ",") " s/mm" 
-    $
-  - Cada 1 milímetro no papel equivale a #str(ex).replace(".", ",") segundos da variável experimental tempo.
++ Eixo Vertical ($v arrow s$). Aplique a equação @eq-escala-y para calcular o valor da razão de escala vertical. Note que a altura do papel é igual a $#y$ mm. Entretando, a fim de ter uma _margem de segurança_, utilizaremos $H = #H$ mm. Preencha a @tab-escala-y.
 
-+ Eixo Vertical: $y arrow.double  s "(Posição)"$.
-
-  - Cálculo da amplitude vertical ($A_v$):
-    $ 
-      A_v &= s_("máx") = #str(s_max).replace(".", ",") " m"
-    $
-  - Divida a amplitude  vertical ($A_v$)  pela altura do papel (nese caso igual a $H = #H $ mm) para encontrar a escala horizontal ($e_y$):
-    $
-      e_y &= frac(A_v, H) = #s_max/#H approx #str(ey).replace(".", ",") " m/mm" 
-    $
-  - Cada 1 milímetro no papel equivale a $#str(ey).replace(".", ",")$ metros da variável experimental posição.
+#figure(
+  kind: table,
+  caption: [Cálculo da escala vertical]
+)[
+  #table(
+    columns: (1fr, 1fr, 1fr, 1fr),
+    table.header(
+      [$s_("min")$], [$s_("max")$], [$H$], [$e_y$],
+    ), 
+    [0], [], [], []
+  )
+]<tab-escala-y>
 
 #section([== Marcação dos pontos e traçado da reta])
 
 + Localize cada par (tempo, posição) no gráfico e marque-os com pequenos pontos. Por exemplo, para localizar no papel o par ordenado ($t = #str(t.at(2)).replace(".", ",")$ s, $s = #str(s.at(2)).replace(".", ",")$ m), faça:
-  - Eixo horizontal ($x$): 
+  - Para o eixo horizontal ($x$), aplique a @eq-prop-x ($u arrow t$): 
   $
-    x &= (t)/e_x = #str(t.at(2)).replace(".", ",")/#str(ex).replace(".", ",") approx  #str(calc.round(t.at(2)/ex)).replace(".", ",") " mm"
+    &t = t_("min") + e_x dot x \ 
+    &arrow.double 
+    x = (t - t_("min"))/e_x = #str(t.at(2)).replace(".", ",")/#str(ex).replace(".", ",") approx  #str(calc.round(t.at(2)/ex)).replace(".", ",") " mm"
   $
-  - Eixo Vertical ($y$): 
+  - Para o eixo vertical ($y$), aplique a @eq-prop-y ($v arrow s$): 
   $
-    y &= (s)/e_y =  #str(s.at(2)).replace(".", ",")/#str(ey).replace(".", ",") approx  #str(calc.round(s.at(2)/ey)).replace(".", ",") " mm"
+    &s = s_("min") + e_y dot y \ 
+    &arrow.double 
+    y = (s - s_("min"))/e_y =  #str(s.at(2)).replace(".", ",")/#str(ey).replace(".", ",") approx  #str(calc.round(s.at(2)/ey)).replace(".", ",") " mm"
   $
 
 + Com a régua, trace uma reta que passe o mais próximo possível de todos os pontos, equilibrando os que ficam acima e abaixo (Ver @fig-papel).
@@ -183,6 +256,7 @@ $
 
 + Observando a @fig-papel, percebemos que a reta passa pelos pontos $P_1 = (#x1, #y1)$ e $P_2 = (#x2, #y2)$. Sabendo que cada 1 mm no eixo horizontal equivale a 0,0059 s e que cada 1 mm no eixo vertical equivale a 0,0040 m, temos:
 
+#show math.equation: set text(size: 11pt)
   $
       P_1 &= (x1, y1) &arrow.double 
       &cases(
@@ -197,17 +271,43 @@ $
   $
 
   Então,
-
+#show math.equation: set text(size: 12pt)
   $
     m &= frac(s_2 - s_1, t_2 - t_1) = (#str(calc.round(1000*s2)/1000).replace(".", ",") - #str(calc.round(1000*s1)/1000).replace(".", ",")) / (#str(calc.round(1000*t2)/1000).replace(".", ",") - #str(calc.round(1000*t1)/1000).replace(".", ",")) approx #str(calc.round(1000*v)/1000).replace(".", ",") "m/s"
   $
 
++ Especifique no papel milimetrado os eixos para as variável tempo ($t$) e posição ($s$). Aplicando a @eq-prop-x, perceba que $50$ mm no papel equivalem a $0,32$ s no eixo horizontal e, aplicando a @eq-prop-y,  para o eixo vertical, $50$ mm equivalem a $0,2$ m.
 
   #figure(
     caption: [Análise gráfica dos dados de exemplo],
     cetz.canvas({
       import cetz.draw: *
 
+      for i in range(y+1, step: 10) {
+        let cor = gray
+        if i <= x {
+
+          if calc.rem(i, 50)==0 and i != 0{
+            let t = str(calc.round(100 * (i * ex))/100).replace(".", ",")
+            cor = black.transparentize(30%)
+            content((i/k, -1/10), [#text(fill: primary-color)[#t]], anchor: "north")
+            content((i/k, y/k+1/10), [#i], anchor: "south")
+          }
+          line(
+            (i/k, 0), (i/k, y/k), stroke: cor
+          )
+        }
+
+        if calc.rem(i, 50)==0 and i != 0{
+            let s = str(calc.round(100 * (i * ey))/100).replace(".", ",")
+            cor = black.transparentize(30%)
+            content((-1/10, i/k), [#text(fill: primary-color)[#s]], anchor: "east")
+            content((x/k+1/10, i/k), [#i], anchor: "west",)
+        }
+        line(
+          (0, i/k), (x/k, i/k), stroke: cor
+        )
+      }
 
       line(
         (x1/k, y1/k), (x2/k, y1/k), (x2/k, y2/k),
@@ -217,25 +317,6 @@ $
       line(
         ((ta/ex)/k, (sa/ey)/k), ((tb/ex)/k, (sb/ey)/k), stroke: 1.5pt+primary-color
       )
-
-      for i in range(y+1, step: 10) {
-        if i <= x {
-          line(
-            (i/k, 0), (i/k, y/k), stroke: black.transparentize(60%)
-          )
-          if calc.rem(i, 50)==0 and i != 0{
-            content((i/k, -1/10), [#i], anchor: "north")
-            content((i/k, y/k+1/10), [#i], anchor: "south")
-          }
-        }
-        line(
-          (0, i/k), (x/k, i/k), stroke: black.transparentize(60%)
-        )
-        if calc.rem(i, 50)==0{
-            content((-1/10, i/k), [#i], anchor: "east")
-            content((x/k+1/10, i/k), [#i], anchor: "west",)
-        }
-      }
 
       let xi
       let yi
@@ -255,8 +336,16 @@ $
         ((x2 + 15)/k, (y2 - 30)/k), (x2/k, y2/k), mark: (end: "stealth", fill: black), name: "P2"
       )
       content("P2.start", [$P_2$], anchor: "north", padding: 0.06, fill: white)
+
+      line((0,0), (x/k+15/k, 0), stroke: 2pt+primary-color, mark: (end: "stealth", fill: primary-color), name: "x-axis")
+      content("x-axis.end", anchor: "north", padding: 0.2, [#text(fill: primary-color)[$t$ (s)]])
+
+      line((0,0), (0, y/k + 15/k), stroke: 2pt+primary-color, mark: (end: "stealth", fill: primary-color), name: "y-axis")
+      content("y-axis.end", anchor: "east", padding: 0.2, [#text(fill:primary-color)[$s$ (m)]])
     })
   )<fig-papel>
+
+
 
 #section([= Exercício])
 + Aplique o procedimento acima aos seguintes dados e calcule a velocidade do móvel:
@@ -272,9 +361,8 @@ $
   )
 ]
 
-/**
+
 #set heading(numbering: none)
 #section([= Referências])
 
 #bibliography("assets/references/references.bib", style: "assets/references/abnt.csl", title:"")
-*/

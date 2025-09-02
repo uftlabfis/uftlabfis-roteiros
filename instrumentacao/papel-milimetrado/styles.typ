@@ -133,7 +133,7 @@
 
   // ∑ Equações numeradas
   set math.equation(numbering: "(1)", number-align: bottom)
-  show math.equation: set text(size: 10pt)
+  show math.equation: set text(size: 12pt)
 
   // 🧭 Numeração de seções e listas
   set heading(numbering: "1.1.")
