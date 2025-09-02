@@ -122,7 +122,7 @@
     }
   )
   // ✍️ Estilo de texto e parágrafo
-  set text(lang: "pt", size: 12pt,  font: "Arial")
+  set text(lang: "pt", size: 12pt,  font: "Times New Roman")
 
   set par(
     first-line-indent: (
@@ -133,6 +133,7 @@
 
   // ∑ Equações numeradas
   set math.equation(numbering: "(1)", number-align: bottom)
+  show math.equation: set text(size: 10pt)
 
   // 🧭 Numeração de seções e listas
   set heading(numbering: "1.1.")
